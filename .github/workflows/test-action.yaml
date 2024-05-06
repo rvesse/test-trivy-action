@@ -1,0 +1,21 @@
+name: test trivy action
+on:
+  workflow_dispatch:
+
+jobs:
+  test-trivy-action:
+    name: Test Trivy action
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Trivy Vulnerability Scanner (Blocking for High and Critical)
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: ${{ github.run_id }}
+          format: "table"
+          exit-code: 1
+          ignore-unfixed: true
+          vuln-type: "os,library"
+          severity: "HIGH,CRITICAL"
+          scanners: vuln
+          timeout: 20m0s
+          output: trivy.txt
