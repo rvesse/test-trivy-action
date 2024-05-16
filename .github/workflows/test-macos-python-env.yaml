@@ -1,0 +1,14 @@
+name: Test MacOS Python env
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Test MacOS Python envTest MacOS Python env
+    runs-on: macos-latest
+    steps:
+      - name: Install AWS CLI
+        run: |
+          python3 -m venv .venv
+          source .venv/bin/activate
+          pip3 install awscli
