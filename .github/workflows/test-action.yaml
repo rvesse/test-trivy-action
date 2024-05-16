@@ -5,7 +5,7 @@ on:
 jobs:
   test-macos:
     name: Test MacOS Python env
-    runs-on: macos-latest
+    runs-on: ubuntu-22.04
     steps:
       - name: Install AWS CLI
         run: |
