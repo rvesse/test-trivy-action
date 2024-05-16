@@ -1,10 +1,10 @@
-name: Test MacOS Python env
+name: Test macos
 on:
   workflow_dispatch:
 
 jobs:
-  build:
-    name: Test MacOS Python envTest MacOS Python env
+  test-macos:
+    name: Test MacOS Python env
     runs-on: macos-latest
     steps:
       - name: Install AWS CLI
