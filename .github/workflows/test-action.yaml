@@ -1,14 +1,13 @@
-name: Test macos
+name: Test
+
 on:
-  workflow_dispatch:
+  pull_request_target:
+    types: ["labeled", "closed"]
 
 jobs:
   test-macos:
-    name: Test MacOS Python env
+    name: Test
     runs-on: ubuntu-22.04
     steps:
-      - name: Install AWS CLI
-        run: |
-          python3 -m venv .venv
-          source .venv/bin/activate
-          pip3 install awscli
+      - name: Test
+        run: echo "Labels - ${{ github.event.pull_request.labels.*.name }}"
