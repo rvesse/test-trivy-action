@@ -35,4 +35,4 @@ jobs:
           echo ${{ steps.extract_info.outputs.release_branch }}
           NEW_BRANCHES=$(gh api /repos/${{ github.repository }}/rulesets/$RULESET_ID | jq '{conditions}' | jq '.conditions.ref_name.include += ["refs/heads/${{ steps.extract_info.outputs.release_branch }}"]')
           echo "$NEW_BRANCHES" 
-          echo "$NEW_BRANCHES" | gh api --method put --input - /repos/${{ github.repository }}/rulesets/$RULESET_ID
+          gh api --method put --input "$NEW_BRANCHES" /repos/${{ github.repository }}/rulesets/$RULESET_ID
