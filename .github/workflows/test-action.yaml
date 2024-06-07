@@ -1,13 +1,32 @@
 name: Test
 
 on:
-  pull_request_target:
-    types: ["labeled", "closed"]
+  push:
+    branches:
+      - main
+      - 'release/v*'
 
 jobs:
-  test-macos:
-    name: Test
-    runs-on: ubuntu-22.04
+  release-tag:
+    runs-on: ubuntu-latest
+    if: ${{ startsWith(github.event.head_commit.message, 'release:') }}
     steps:
-      - name: Test
-        run: echo "Labels - ${{ toJson(github.event.pull_request.labels) }}"
+      # Since skip-github-release is specified, the outputs of googleapis/release-please-action cannot be used.
+      # Therefore, we need to parse the version ourselves.
+      - name: Extract version and PR number from commit message
+        id: extract_info
+        shell: bash
+        run: |
+          echo "version=$( echo "${{ github.event.head_commit.message }}" | sed 's/^release: v\([0-9]\+\.[0-9]\+\.[0-9]\+\).*$/\1/' )" >> $GITHUB_OUTPUT
+          echo "pr_number=$( echo "${{ github.event.head_commit.message }}" | sed 's/.*(\#\([0-9]\+\)).*$/\1/' )" >> $GITHUB_OUTPUT
+          echo "release_branch=release/v($ echo "${{ github.event.head_commit.message }}" | sed 's/^release: v\([0-9]\+\.[0-9]\+\).*$/\1/' )" >> $GITHUB_OUTPUT
+
+
+      # When v0.50.0 is released, a release branch "release/v0.50" is created.
+      - name: Add release branch to rulesets
+        if: ${{ endsWith(steps.extract_info.outputs.version, '.0') }}
+        shell: bash
+        run: |
+          RULESET_ID=$(gh api /repos/"${{ github.repository }}"/rulesets --jq '.[] | select(.name == "release") | .id')
+          gh api /repos/"${{ github.repository }}"/rulesets/"$RULESET_ID" | jq '{conditions}' | jq '.conditions.ref_name.include += [echo "${{ github.event.head_commit.message }}"]' | gh api --method put --input - /repos/aquasecurity/trivy-backport-test/rulesets/877307
+
