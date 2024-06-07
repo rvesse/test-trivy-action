@@ -31,4 +31,4 @@ jobs:
         run: |
           RULESET_ID=$(gh api /repos/${{ github.repository }}/rulesets --jq '.[] | select(.name=="release") | .id')
           echo "$RULESET_ID"
-          gh api /repos/${{ github.repository }}/rulesets/$RULESET_ID | jq '{conditions}' | jq '.conditions.ref_name.include += [echo "${{ github.event.head_commit.message }}"]' | gh api --method put --input - /repos/aquasecurity/trivy-backport-test/rulesets/877307
+          gh api /repos/${{ github.repository }}/rulesets/$RULESET_ID | jq '{conditions}' | jq '.conditions.ref_name.include += [${{ steps.extract_info.outputs.release_branch }}]' | gh api --method put --input - /repos/${{ github.repository }}/rulesets/$RULESET_ID
