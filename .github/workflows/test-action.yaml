@@ -25,6 +25,8 @@ jobs:
       # When v0.50.0 is released, a release branch "release/v0.50" is created.
       - name: Add release branch to rulesets
         if: ${{ endsWith(steps.extract_info.outputs.version, '.0') }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         shell: bash
         run: |
           RULESET_ID=$(gh api /repos/"${{ github.repository }}"/rulesets --jq '.[] | select(.name == "release") | .id')
