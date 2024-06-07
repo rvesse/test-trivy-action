@@ -33,6 +33,6 @@ jobs:
           echo "$RULESET_ID"
           echo ${{ steps.extract_info.outputs.version }}
           echo ${{ steps.extract_info.outputs.release_branch }}
-          NEW_BRANCHES=refs/heads/$(gh api /repos/${{ github.repository }}/rulesets/$RULESET_ID | jq '{conditions}' | jq '.conditions.ref_name.include += ["${{ steps.extract_info.outputs.release_branch }}"]')
-          echo "$NEW_BRANCHES" 
+          NEW_BRANCHES=$(gh api /repos/${{ github.repository }}/rulesets/$RULESET_ID | jq '{conditions}' | jq '.conditions.ref_name.include += ["${{ steps.extract_info.outputs.release_branch }}"]')
+          echo "refs/heads/$NEW_BRANCHES" 
           echo "$NEW_BRANCHES" | gh api --method put --input - /repos/${{ github.repository }}/rulesets/$RULESET_ID
