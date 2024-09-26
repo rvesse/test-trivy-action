@@ -33,4 +33,7 @@ jobs:
           path: integration/testdata/fixtures/images
           key: "2024-09-10" # trivy-test-images last update date
 
+      - name: Check
+        run: ls -ahl integration/testdata/fixtures/images/
+
 
