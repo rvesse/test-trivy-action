@@ -15,23 +15,25 @@ jobs:
       - name: Check out code into the Go module directory
         uses: actions/checkout@v4.1.6
 
+      - name: Generate image list digest
+        id: image-digest
+        run: |
+          IMAGE_LIST=$(skopeo list-tags docker://ghcr.io/aquasecurity/trivy-test-images)
+          DIGEST=$(echo "$IMAGE_LIST" | sha256sum | cut -d' ' -f1)
+          echo "digest=$DIGEST" >> $GITHUB_OUTPUT
+
       - name: Restore test images from cache
         uses: actions/cache@v4
         id: restore-test-images
         with:
           path: integration/testdata/fixtures/images
-          key: "2024-09-10" # trivy-test-images last update date
+          key: cache-test-images-${{ steps.image-digest.outputs.digest }}
+          restore-keys:
+            cache-test-images-
 
       - name: Download test images if cache is missing
         if: steps.restore-test-images.outputs.cache-hit != 'true'
         run: echo "123" > integration/testdata/fixtures/images/test-image2.txt
-
-      - name: Save test images into cache if cache is missing
-        if: steps.restore-test-images.outputs.cache-hit != 'true'
-        uses: actions/cache@v4
-        with:
-          path: integration/testdata/fixtures/images
-          key: "2024-09-10" # trivy-test-images last update date
 
       - name: Check
         run: ls -ahl integration/testdata/fixtures/images/
