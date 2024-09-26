@@ -23,7 +23,7 @@ jobs:
 
       - name: Download test images if cache is missing
         if: steps.restore-test-images.outputs.cache-hit != 'true'
-        run: mage test:fixtureContainerImages
+        run: echo "123" > integration/testdata/fixtures/images/test-image2.txt
 
       - name: Save test images into cache if cache is missing
         if: steps.restore-test-images.outputs.cache-hit != 'true'
