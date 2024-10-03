@@ -17,13 +17,13 @@ jobs:
       ## To avoid the trivy-db becoming outdated, we save the cache for one day
       - name: Get data
         id: date
-        run: echo "CACHE_DATE=$(date +%Y-%m-%d)" >> $GITHUB_ENV
+        run: echo "date=$(date +%Y-%m-%d)" >> $GITHUB_OUTPUT
 
       - name: Restore trivy cache
         uses: actions/cache@v4
         with:
           path: cache/db
-          key: trivy-cache-${{ env.CACHE_DATE }}
+          key: trivy-cache-${{ date.date }}
           restore-keys:
             trivy-cache-
 
