@@ -28,3 +28,8 @@ jobs:
           scan-type: 'fs'
           scan-ref: '.'
           cache-dir: "./cache"
+
+      - name: check
+        run: |
+          ls -ahl ./cache
+          ls -ahl ./cache/db
