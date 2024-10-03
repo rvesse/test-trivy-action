@@ -29,10 +29,7 @@ jobs:
           cache-dir: "./cache"
 
       ## Trivy-db uses `0600` permissions.
-      ## But `action/cache` doesn't use `root` user
+      ## But `action/cache` use `runner` user by default
       ## So we need to change the permissions before caching the database.
       - name: change permissions for trivy.db
-        run: |
-          whoami
-          ls -ahl ./cache/db
-          sudo chmod 0644 ./cache/db/trivy.db
+        run: sudo chmod 0644 ./cache/db/trivy.db
