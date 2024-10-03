@@ -14,8 +14,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Restore trivy cache
+        uses: actions/cache@v4
+        with:
+          path: cache
+          key: trivy-cache
+          restore-keys:
+            trivy-cache
+
       - name: Run Trivy vulnerability scanner in fs mode
         uses: aquasecurity/trivy-action@0.24.0
         with:
           scan-type: 'fs'
           scan-ref: '.'
+          cache-dir: "./cache"
