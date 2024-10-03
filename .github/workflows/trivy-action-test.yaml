@@ -13,13 +13,19 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      ## To avoid the trivy-db becoming outdated, we save the cache for one day
+      - name: Get data
+        id: date
+        run: echo "CACHE_DATE=$(date +%Y-%m-%d)" >> $GITHUB_ENV
+
       - name: Restore trivy cache
         uses: actions/cache@v4
         with:
           path: cache/db
-          key: trivy-cache
+          key: trivy-cache-${{ env.CACHE_DATE }}
           restore-keys:
-            trivy-cache
+            trivy-cache-
 
       - name: Run Trivy vulnerability scanner in fs mode
         uses: aquasecurity/trivy-action@0.24.0
