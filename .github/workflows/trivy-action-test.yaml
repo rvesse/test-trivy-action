@@ -29,7 +29,8 @@ jobs:
           scan-ref: '.'
           cache-dir: "./cache"
 
-      - name: check
-        run: |
-          ls -ahl ./cache
-          ls -ahl ./cache/db
+      ## Trivy-db uses `0600` permissions.
+      ## But `action/cache` doesn't use `root` user
+      ## So we need to change the permissions before caching the database.
+      - name: change permissions for trivy.db
+        run: chmod 0644 ./cache/db/trivy.db
