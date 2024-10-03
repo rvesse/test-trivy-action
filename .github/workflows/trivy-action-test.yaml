@@ -17,7 +17,7 @@ jobs:
       - name: Restore trivy cache
         uses: actions/cache@v4
         with:
-          path: cache
+          path: cache/db
           key: trivy-cache
           restore-keys:
             trivy-cache
