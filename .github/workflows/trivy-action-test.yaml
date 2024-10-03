@@ -11,20 +11,8 @@ jobs:
     name: Build
     runs-on: ubuntu-20.04
     steps:
-      ## Trivy-db uses `0600` permissions.
-      ## But `action/cache` doesn't use `root` user
-      ## So we need to change the permissions before caching the database.
-      - name: test
-        run: |
-          whoami
       - name: Checkout code
         uses: actions/checkout@v4
-      ## Trivy-db uses `0600` permissions.
-      ## But `action/cache` doesn't use `root` user
-      ## So we need to change the permissions before caching the database.
-      - name: test
-        run: |
-          whoami
       - name: Restore trivy cache
         uses: actions/cache@v4
         with:
@@ -47,4 +35,4 @@ jobs:
         run: |
           whoami
           ls -ahl ./cache/db
-          chmod 0644 ./cache/db/trivy.db
+          sudo chmod 0644 ./cache/db/trivy.db

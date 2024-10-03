@@ -15,10 +15,6 @@ jobs:
       - name: Check out code into the Go module directory
         uses: actions/checkout@v4.1.6
 
-      - name: test
-        run: |
-          whoami        
-
       - name: Generate image list digest
         id: image-digest
         run: |
