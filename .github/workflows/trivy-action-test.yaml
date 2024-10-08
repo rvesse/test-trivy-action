@@ -15,11 +15,11 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run Trivy vulnerability scanner in fs mode
-        uses: knqyf263/trivy-action@73e12a2a4aa15d38dab23326980d3536822557e6
+        uses: knqyf263/trivy-action@e94275cdbe30211a51a2bdb4bba29fd45b7987cc
         env:
           TRIVY_DEBUG: true
         with:
-          image-ref: 'aquasec/trivy'
+          image-ref: 'aquasec/trivy:v0.53.0'
           format: 'table'
           exit-code: '1'
           ignore-unfixed: true
