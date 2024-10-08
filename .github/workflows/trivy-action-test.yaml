@@ -1,4 +1,4 @@
-name: build
+name: trivy-action
 on:
   push:
     branches:
@@ -14,28 +14,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      ## To avoid the trivy-db becoming outdated, we save the cache for one day
-      - name: Get data
-        id: date
-        run: echo "date=$(date +%Y-%m-%d)" >> $GITHUB_OUTPUT
-
-      - name: Restore trivy cache
-        uses: actions/cache@v4
-        with:
-          path: cache/db
-          key: trivy-cache-${{ steps.date.outputs.date }}
-          restore-keys:
-            trivy-cache-
-
       - name: Run Trivy vulnerability scanner in fs mode
-        uses: aquasecurity/trivy-action@0.24.0
+        uses: knqyf263/trivy-action@73e12a2a4aa15d38dab23326980d3536822557e6
         with:
           scan-type: 'fs'
           scan-ref: '.'
-          cache-dir: "./cache"
-
-      ## Trivy-db uses `0600` permissions.
-      ## But `action/cache` use `runner` user by default
-      ## So we need to change the permissions before caching the database.
-      - name: change permissions for trivy.db
-        run: sudo chmod 0644 ./cache/db/trivy.db
+          cache: true
+          version: v0.56.0
