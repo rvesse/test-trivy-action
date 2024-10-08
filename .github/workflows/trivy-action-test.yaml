@@ -27,4 +27,4 @@ jobs:
           version: "v0.56.0"
           output: 'dependency-results.sbom.json'
           limit-severities-for-sarif: true
-          github-pat: ${{ secrets.GITHUB_TOKEN }}
+          github-pat: ${{ secrets.PAT }}
