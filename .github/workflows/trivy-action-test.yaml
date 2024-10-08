@@ -20,9 +20,10 @@ jobs:
           TRIVY_DEBUG: true
         with:
           image-ref: 'aquasec/trivy:0.53.0'
-          format: 'sarif'
+          format: 'github'
           exit-code: '0'
           vuln-type: 'os,library'
           severity: LOW
           version: "v0.56.0"
           limit-severities-for-sarif: true
+          github-pat: ${{ secrets.GITHUB_TOKEN }}
