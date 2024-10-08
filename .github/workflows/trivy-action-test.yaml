@@ -22,7 +22,6 @@ jobs:
           image-ref: 'aquasec/trivy:v0.53.0'
           format: 'table'
           exit-code: '1'
-          ignore-unfixed: true
           vuln-type: 'os,library'
-          severity: 'CRITICAL,HIGH'
           limit-severities-for-sarif: "LOW"
+          version: "v0.56.0"
