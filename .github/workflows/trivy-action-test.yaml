@@ -19,7 +19,7 @@ jobs:
         env:
           TRIVY_DEBUG: true
         with:
-          image-ref: 'aquasec/trivy:v0.53.0'
+          image-ref: 'aquasec/trivy:0.53.0'
           format: 'table'
           exit-code: '1'
           vuln-type: 'os,library'
