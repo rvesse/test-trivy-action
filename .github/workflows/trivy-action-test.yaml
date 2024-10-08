@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run Trivy vulnerability scanner in fs mode
-        uses: aquasecurity/trivy-action@master
+        uses: knqyf263/trivy-action@e94275cdbe30211a51a2bdb4bba29fd45b7987cc
         env:
           TRIVY_DEBUG: true
         with:
@@ -24,6 +24,7 @@ jobs:
           format: 'github'
           exit-code: '0'
           vuln-type: 'os,library'
-          severity: LOW
+          version: "v0.56.0"
           output: 'dependency-results.sbom.json'
+          limit-severities-for-sarif: true
           github-pat: ${{ secrets.GITHUB_TOKEN }}
