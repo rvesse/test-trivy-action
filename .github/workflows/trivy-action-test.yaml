@@ -25,3 +25,4 @@ jobs:
           vuln-type: 'os,library'
           severity: LOW
           version: "v0.56.0"
+          limit-severities-for-sarif: true
