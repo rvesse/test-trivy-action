@@ -16,6 +16,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Set platform name
+        id: set-platform
+        run: |
+          lowercase_repo=$(echo "${{ runner.os }}" | tr '[:upper:]' '[:lower:]')
+          echo "PLATFORM=${lowercase_repo}" >> $GITHUB_OUTPUT
+
       - name: Set arch name
         id: set-arch
         run: |
@@ -31,10 +37,11 @@ jobs:
             echo "Unsupported architecture"
             exit 1
           fi
+
       - name: Install trivy
         uses: jaxxstorm/action-install-gh-release@v1.10.0
         with:
           repo: aquasecurity/trivy
           tag: v0.56.1
-          platform: ${{ runner.os }}
+          platform: ${{ steps.set-platform.outputs.PLATFROM }}
           arch: ${{ steps.set-arch.outputs.ARCH }}
