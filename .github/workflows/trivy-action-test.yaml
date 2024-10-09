@@ -18,8 +18,6 @@ jobs:
 
       - name: Run Trivy vulnerability scanner in fs mode
         uses: DmitriyLewen/trivy-action@9ad406f73f78c1779d9e0378fc82253df428f008
-        env:
-          TRIVY_DEBUG: true
         with:
           scan-type: 'fs'
           image-ref: '.'
