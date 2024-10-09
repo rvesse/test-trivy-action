@@ -43,5 +43,5 @@ jobs:
         with:
           repo: aquasecurity/trivy
           tag: v0.56.1
-          platform: ${{ steps.set-platform.outputs.PLATFROM }}
+          platform: ${{ steps.set-platform.outputs.PLATFORM }}
           arch: ${{ steps.set-arch.outputs.ARCH }}
