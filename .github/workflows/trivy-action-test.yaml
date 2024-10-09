@@ -23,10 +23,8 @@ jobs:
         with:
           scan-type: 'fs'
           image-ref: '.'
-          format: 'github'
+          format: 'table'
           exit-code: '0'
           vuln-type: 'os,library'
           version: "v0.56.0"
-          output: 'dependency-results.sbom.json'
-          limit-severities-for-sarif: true
           github-pat: ${{ secrets.PAT }}
