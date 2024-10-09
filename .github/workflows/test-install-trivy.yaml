@@ -16,41 +16,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # All objects must be lowercase:
-      # https://github.com/jaxxstorm/action-install-gh-release/issues/71#issuecomment-1780893687
-      - name: Set platform name
-        id: set-platform
-        shell: bash
-        run: |
-          lowercase_repo=$(echo "${{ runner.os }}" | tr '[:upper:]' '[:lower:]')
-          echo "PLATFORM=${lowercase_repo}" >> $GITHUB_OUTPUT
-
-      # All objects must be lowercase:
-      # https://github.com/jaxxstorm/action-install-gh-release/issues/71#issuecomment-1780893687
-      - name: Set arch name
-        id: set-arch
-        shell: bash
-        run: |
-          if [ "${{ runner.arch }}" == "X86" ]; then
-            echo "ARCH=32bit" >> $GITHUB_OUTPUT
-          elif [ "${{ runner.arch }}" == "X64" ]; then
-            echo "ARCH=64bit" >> $GITHUB_OUTPUT
-          elif [ "${{ runner.arch }}" == "ARM" ]; then
-            echo "ARCH=arm" >> $GITHUB_OUTPUT
-          elif [ "${{ runner.arch }}" == "ARM64" ]; then
-            echo "ARCH=arm64" >> $GITHUB_OUTPUT
-          else
-            echo "Unsupported architecture"
-            exit 1
-          fi
-
       - name: Install trivy
-        uses: jaxxstorm/action-install-gh-release@v1.10.0
+        uses: DmitriyLewen/setup-trivy@ae6c5eae2f06c10e2fde5abd667c84789390cfbe
         with:
           repo: aquasecurity/trivy
-          tag: 'latest'
-          platform: ${{ steps.set-platform.outputs.PLATFORM }}
-          arch: ${{ steps.set-arch.outputs.ARCH }}
+          version: 'v0.56.0'
           cache: enable
 
       - name: Test trivy run
