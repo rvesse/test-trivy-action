@@ -38,4 +38,3 @@ jobs:
           tag: v0.56.1
           platform: ${{ runner.platform }}
           arch: ${{ steps.set-arch.outputs.ARCH }}
-          binaries-location: trivy
