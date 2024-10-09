@@ -16,17 +16,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set platform name
-        id: set-platform
+      - name: Set arch name
+        id: set-arch
         run: |
-          if [ "${{ runner.os }}" == "Linux" ]; then
-            echo "PLATFORM=Linux" >> $GITHUB_OUTPUT
-          elif [ "${{ runner.os }}" == "macOS" ]; then
-            echo "PLATFORM=macOS" >> $GITHUB_OUTPUT
-          elif [ "${{ runner.os }}" == "windows" ]; then
-            echo "PLATFORM=windows" >> $GITHUB_OUTPUT
+          if [ "${{ runner.arch }}" == "X86" ]; then
+            echo "ARCH=32bit" >> $GITHUB_OUTPUT
+          elif [ "${{ runner.arch }}" == "X64" ]; then
+            echo "ARCH=64bit" >> $GITHUB_OUTPUT
+          elif [ "${{ runner.arch }}" == "ARM" ]; then
+            echo "ARCH=ARM" >> $GITHUB_OUTPUT
+          elif [ "${{ runner.arch }}" == "ARM64" ]; then
+            echo "ARCH=ARM64" >> $GITHUB_OUTPUT
           else
-            echo "Unsupported platform"
+            echo "Unsupported architecture"
             exit 1
           fi
       - name: Install trivy
@@ -34,5 +36,6 @@ jobs:
         with:
           repo: aquasecurity/trivy
           tag: 0.56.1
-          platform: ${{ steps.set-platform.outputs.PLATFORM }}
-          arch: 64bit
+          platform: ${{ runner.platform }}
+          arch: ${{ steps.set-arch.outputs.ARCH }}
+          binaries-location: trivy
