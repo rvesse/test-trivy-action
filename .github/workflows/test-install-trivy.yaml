@@ -19,7 +19,6 @@ jobs:
       - name: Install trivy
         uses: DmitriyLewen/setup-trivy@a991cd3dbcd90b48777ec97d665efc4950356808
         with:
-          version: 'v0.56.0'
           cache: true
 
       - name: Test trivy run
