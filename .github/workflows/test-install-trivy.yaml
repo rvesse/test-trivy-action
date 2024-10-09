@@ -35,7 +35,7 @@ jobs:
         uses: jaxxstorm/action-install-gh-release@v1.10.0
         with:
           repo: aquasecurity/trivy
-          tag: 0.56.1
+          tag: v0.56.1
           platform: ${{ runner.platform }}
           arch: ${{ steps.set-arch.outputs.ARCH }}
           binaries-location: trivy
