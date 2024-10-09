@@ -33,5 +33,6 @@ jobs:
         uses: jaxxstorm/action-install-gh-release@v1.10.0
         with:
           repo: aquasecurity/trivy
+          tag: v0.56.1
           platform: ${{ steps.set-platform.outputs.PLATFORM }}
           arch: 64bit
