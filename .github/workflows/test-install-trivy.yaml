@@ -51,7 +51,7 @@ jobs:
           tag: v0.56.1
           platform: ${{ steps.set-platform.outputs.PLATFORM }}
           arch: ${{ steps.set-arch.outputs.ARCH }}
-          cache: true
+          cache: enable
 
       - name: Test trivy run
         run: trivy -v
