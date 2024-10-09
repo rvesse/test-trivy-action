@@ -22,7 +22,7 @@ jobs:
           if [ "${{ runner.os }}" == "Linux" ]; then
             echo "PLATFORM=linux" >> $GITHUB_OUTPUT
           elif [ "${{ runner.os }}" == "macOS" ]; then
-            echo "PLATFORM=macOS" >> $GITHUB_OUTPUT
+            echo "PLATFORM=macos" >> $GITHUB_OUTPUT
           elif [ "${{ runner.os }}" == "Windows" ]; then
             echo "PLATFORM=windows" >> $GITHUB_OUTPUT
           else
