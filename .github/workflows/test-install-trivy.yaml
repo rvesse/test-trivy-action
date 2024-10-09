@@ -19,9 +19,8 @@ jobs:
       - name: Install trivy
         uses: DmitriyLewen/setup-trivy@a991cd3dbcd90b48777ec97d665efc4950356808
         with:
-          repo: aquasecurity/trivy
           version: 'v0.56.0'
-          cache: enable
+          cache: true
 
       - name: Test trivy run
         run: trivy -v
