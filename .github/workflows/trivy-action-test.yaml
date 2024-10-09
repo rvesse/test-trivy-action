@@ -17,12 +17,11 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run Trivy vulnerability scanner in fs mode
-        uses: DmitriyLewen/trivy-action@c86db39c3daf15fec9e3702fb7e76f8372310695
+        uses: DmitriyLewen/trivy-action@3d519a6c5dc45b0f0deabdc4c869939b5da80267
         with:
           scan-type: 'fs'
           image-ref: '.'
           format: 'table'
           exit-code: '0'
           vuln-type: 'os,library'
-          version: "v0.56.0"
-          github-pat: ${{ secrets.PAT }}
+          version: "v0.56.1"
