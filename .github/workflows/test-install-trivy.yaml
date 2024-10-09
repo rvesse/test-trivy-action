@@ -18,6 +18,8 @@ jobs:
 
       - name: Install trivy
         uses: DmitriyLewen/setup-trivy@546ae11546ed06c372e0cd03e85c63ec117a84ed
+        with:
+          version: v0.55.0
 
       - name: Test trivy run
         run: trivy -v
