@@ -18,11 +18,12 @@ jobs:
 
       - name: Set platform name
         id: set-platform
+        shell: bash
         run: |
           if [ "${{ runner.os }}" == "Linux" ]; then
             echo "PLATFORM=linux" >> $GITHUB_OUTPUT
           elif [ "${{ runner.os }}" == "macOS" ]; then
-            echo "PLATFORM=macos" >> $GITHUB_OUTPUT
+            echo "PLATFORM=macOS" >> $GITHUB_OUTPUT
           elif [ "${{ runner.os }}" == "Windows" ]; then
             echo "PLATFORM=windows" >> $GITHUB_OUTPUT
           else
@@ -32,6 +33,7 @@ jobs:
 
       - name: Set arch name
         id: set-arch
+        shell: bash
         run: |
           if [ "${{ runner.arch }}" == "X86" ]; then
             echo "ARCH=32bit" >> $GITHUB_OUTPUT
