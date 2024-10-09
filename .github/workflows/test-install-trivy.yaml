@@ -20,6 +20,7 @@ jobs:
       # https://github.com/jaxxstorm/action-install-gh-release/issues/71#issuecomment-1780893687
       - name: Set platform name
         id: set-platform
+        shell: bash
         run: |
           lowercase_repo=$(echo "${{ runner.os }}" | tr '[:upper:]' '[:lower:]')
           echo "PLATFORM=${lowercase_repo}" >> $GITHUB_OUTPUT
