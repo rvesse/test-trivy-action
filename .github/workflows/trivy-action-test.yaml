@@ -8,14 +8,16 @@ on:
 
 jobs:
   build:
-    name: Build
-    runs-on: ubuntu-20.04
+    runs-on: ${{ matrix.operating-system }}
+    strategy:
+      matrix:
+        operating-system: [ubuntu-latest, windows-latest, macos-latest]
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Run Trivy vulnerability scanner in fs mode
-        uses: knqyf263/trivy-action@e94275cdbe30211a51a2bdb4bba29fd45b7987cc
+        uses: DmitriyLewen/trivy-action@fbf5747437867943f56a70b92bc07c2ee815bb69
         env:
           TRIVY_DEBUG: true
         with:
