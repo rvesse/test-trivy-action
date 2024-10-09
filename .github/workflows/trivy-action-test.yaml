@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run Trivy vulnerability scanner in fs mode
-        uses: DmitriyLewen/trivy-action@fbf5747437867943f56a70b92bc07c2ee815bb69
+        uses: DmitriyLewen/trivy-action@9ad406f73f78c1779d9e0378fc82253df428f008
         env:
           TRIVY_DEBUG: true
         with:
