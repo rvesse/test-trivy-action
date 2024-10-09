@@ -1,0 +1,37 @@
+name: trivy-install
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ${{ matrix.operating-system }}
+    strategy:
+      matrix:
+        operating-system: [ubuntu-latest, windows-latest, macos-latest]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set platform name
+        id: set-platform
+        run: |
+          if [ "${{ runner.os }}" == "Linux" ]; then
+            echo "PLATFORM=Linux" >> $GITHUB_OUTPUT
+          elif [ "${{ runner.os }}" == "macOS" ]; then
+            echo "PLATFORM=macOS" >> $GITHUB_OUTPUT
+          elif [ "${{ runner.os }}" == "windows" ]; then
+            echo "PLATFORM=windows" >> $GITHUB_OUTPUT
+          else
+            echo "Unsupported platform"
+            exit 1
+          fi
+      - name: Install trivy
+        uses: jaxxstorm/action-install-gh-release@v1.10.0
+        with:
+          repo: aquasecurity/trivy
+          platform: ${{ steps.set-platform.outputs.PLATFORM }}
+          arch: 64bit
