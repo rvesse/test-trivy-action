@@ -8,10 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: ${{ matrix.operating-system }}
-    strategy:
-      matrix:
-        operating-system: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: macos-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
