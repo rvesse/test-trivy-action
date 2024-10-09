@@ -19,8 +19,16 @@ jobs:
       - name: Set platform name
         id: set-platform
         run: |
-          lowercase_repo=$(echo "${{ runner.os }}" | tr '[:upper:]' '[:lower:]')
-          echo "PLATFORM=${lowercase_repo}" >> $GITHUB_OUTPUT
+          if [ "${{ runner.os }}" == "Linux" ]; then
+            echo "PLATFORM=linux" >> $GITHUB_OUTPUT
+          elif [ "${{ runner.os }}" == "macOS" ]; then
+            echo "PLATFORM=macOS" >> $GITHUB_OUTPUT
+          elif [ "${{ runner.os }}" == "Windows" ]; then
+            echo "PLATFORM=windows" >> $GITHUB_OUTPUT
+          else
+            echo "Unsupported platform"
+            exit 1
+          fi
 
       - name: Set arch name
         id: set-arch
