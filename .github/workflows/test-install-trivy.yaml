@@ -21,6 +21,7 @@ jobs:
         with:
           version: v0.56.0
           cache: true
+          path: "."
 
       - name: Test trivy run
         shell: bash
