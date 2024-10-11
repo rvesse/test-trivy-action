@@ -8,13 +8,13 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Run Trivy vulnerability scanner in fs mode
-        uses: DmitriyLewen/trivy-action@c4f287b428b429441a367965327f9828dfd564c0
+        uses: DmitriyLewen/trivy-action@f4134be94c08be2fb699a60627177c300876eb3d
         with:
           scan-type: 'fs'
           image-ref: '.'
