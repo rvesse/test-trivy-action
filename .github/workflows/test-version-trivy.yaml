@@ -27,5 +27,9 @@ jobs:
         shell: bash
         run: |
           ls -ahl
-          ls -ahl .trivy
           git describe --tags --abbrev=0
+          cd trivy
+          ls -ahl
+          git describe --tags --abbrev=0
+         
+          
