@@ -24,4 +24,9 @@ jobs:
 
       - name: Test trivy run
         shell: bash
-        run: trivy -v
+        run: |
+          trivy -v
+          ls -ahl ~
+          ls -ahl ~/.local
+          ls -ahl ~/.local/bin
+          ls -ahl ~/.local/bin/trivy-bin
