@@ -1,0 +1,31 @@
+name: trivy-version
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Checkout install script
+        if: steps.cache.outputs.cache-hit != 'true'
+        uses: actions/checkout@v4
+        with:
+          repository: aquasecurity/trivy
+          sparse-checkout: |
+            contrib/install.sh
+          sparse-checkout-cone-mode: false
+          path: trivy
+          fetch-depth: 1
+
+      - name: Test trivy run
+        shell: bash
+        run: |
+          ls -ahl
+          ls -ahl .trivy
+          git describe --tags --abbrev=0
