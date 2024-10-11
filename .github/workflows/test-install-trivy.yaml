@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install trivy
-        uses: DmitriyLewen/setup-trivy@1950cd138fe8365a9aaf86eb095a74a6b1aea0bf
+        uses: DmitriyLewen/setup-trivy@ed01ccaeedeb61108a2bac8dc5c629ac6697995a
         with:
           version: latest
           cache: true
