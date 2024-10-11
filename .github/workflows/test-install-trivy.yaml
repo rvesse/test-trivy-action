@@ -20,6 +20,7 @@ jobs:
         uses: DmitriyLewen/setup-trivy@ca1f5425f550b717316d242feaa2572e65521904
         with:
           version: v0.56.0
+          cache: true
 
       - name: Test trivy run
         shell: bash
