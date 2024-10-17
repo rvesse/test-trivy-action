@@ -8,18 +8,15 @@ on:
 
 jobs:
   build:
-    runs-on: ${{ matrix.operating-system }}
-    strategy:
-      matrix:
-        operating-system: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: my-macos-runner
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Install trivy
-        uses: DmitriyLewen/setup-trivy@c686e3c252f9d4a2aa5e35377c09d307d21a7386
+        uses: aquasecurity/setup-trivy@v0.2.1
         with:
-          version: v0.55.0
+          version: v0.56.2
           cache: true
 
       - name: Test trivy run
