@@ -17,6 +17,7 @@ jobs:
         uses: DmitriyLewen/setup-trivy@e09b21f9d465b17a0aa6d7a57e603d4b80661d37
         with:
           version: v0.56.2
+          token: invalid_token
 
       - name: Test trivy run
         shell: bash
