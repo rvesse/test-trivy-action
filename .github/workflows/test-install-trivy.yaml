@@ -20,10 +20,11 @@ jobs:
         uses: DmitriyLewen/setup-trivy@65747a0e94c86392593e40265dc539d8b276df3a
         with:
           version: v0.56.2
+          path: "."
 
       - name: Test trivy run
         shell: bash
         run: |
-          ls -ahl "$HOME/.local/bin"
-          ls -ahl "$HOME/.local/bin/trivy-bin"
-          ls -ahl "$HOME/.local/bin/trivy-bin/contrib"
+          ls -ahl "."
+          ls -ahl "./trivy-bin"
+          ls -ahl "./trivy-bin/contrib"
