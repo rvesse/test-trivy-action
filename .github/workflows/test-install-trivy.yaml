@@ -14,11 +14,13 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install trivy
-        uses: DmitriyLewen/setup-trivy@2df9f605c29dbee29f7c66a8151e3b97f0874f5d
+        uses: DmitriyLewen/setup-trivy@8864c97f0ae59376174760196d2558196a854bcb
         with:
           version: v0.56.2
-          token: ${{ secrets.READ_PAT }}
 
       - name: Test trivy run
         shell: bash
-        run: trivy -v
+        run: |
+          ls -ahl "$HOME/.local/bin"
+          ls -ahl "$HOME/.local/bin/trivy-bin"
+          ls -ahl "$HOME/.local/bin/trivy-bin/contrib"
