@@ -25,3 +25,4 @@ jobs:
           exit-code: '0'
           vuln-type: 'os,library'
           version: "v0.56.2"
+          cache: false
