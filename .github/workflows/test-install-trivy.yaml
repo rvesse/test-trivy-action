@@ -20,7 +20,7 @@ jobs:
         uses: DmitriyLewen/setup-trivy@34d9f0ee0ca364ca9f822843050fb1013babdb58
         with:
           version: v0.56.2
-          token: ${{ secrets.READ_PAT }}
+          token: 'invalid'
 
       - name: Test trivy run
         shell: bash
