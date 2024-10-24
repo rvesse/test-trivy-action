@@ -17,10 +17,9 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install trivy
-        uses: DmitriyLewen/setup-trivy@0faeae687c92b01123d6eaafbe78091bc8b610eb
+        uses: DmitriyLewen/setup-trivy@34d9f0ee0ca364ca9f822843050fb1013babdb58
         with:
           version: v0.56.2
-          token: ${{ secrets.READ_PAT }}
 
       - name: Test trivy run
         shell: bash
