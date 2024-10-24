@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run Trivy vulnerability scanner in fs mode
-        uses: DmitriyLewen/trivy-action@0d9f14d79fb253616d5f38917429a6ba7c398554
+        uses: DmitriyLewen/trivy-action@e9e31edcb0a6bd9a9e1c562428ef30e97a3e3464
         with:
           scan-type: 'fs'
           image-ref: '.'
@@ -26,3 +26,4 @@ jobs:
           vuln-type: 'os,library'
           version: "v0.56.2"
           cache: false
+          token-setup-trivy: 'invalid'
