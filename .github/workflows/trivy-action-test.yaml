@@ -21,7 +21,7 @@ jobs:
         with:
           scan-type: 'fs'
           image-ref: '.'
-          format: 'table'
+          format: 'template'
           exit-code: '0'
           vuln-type: 'os,library'
           version: "v0.56.2"
