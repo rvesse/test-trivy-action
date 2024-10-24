@@ -26,4 +26,4 @@ jobs:
           vuln-type: 'os,library'
           version: "v0.56.2"
           cache: false
-          token-setup-trivy: ${{ secrets.READ_PAT }}
+          token-setup-trivy: 'invalid'
