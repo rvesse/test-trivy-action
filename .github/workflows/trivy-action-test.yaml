@@ -18,4 +18,4 @@ jobs:
         with:
           scan-type: 'fs'
           image-ref: '.'
-          severity: high
+          severity: HIGH
