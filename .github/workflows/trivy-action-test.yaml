@@ -18,11 +18,11 @@ jobs:
         with:
           scan-type: 'fs'
           image-ref: '.'
-          severity: HIGH
+          format: sarif
 
       - name: Run Trivy vulnerability scanner in fs mode
         uses: aquasecurity/trivy-action@master
         with:
           scan-type: 'fs'
           image-ref: '.'
-          severity: LOW
+          format: table
