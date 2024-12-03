@@ -25,4 +25,3 @@ jobs:
         with:
           scan-type: 'fs'
           image-ref: '.'
-          format: table
