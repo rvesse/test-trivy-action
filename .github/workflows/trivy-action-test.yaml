@@ -20,6 +20,9 @@ jobs:
           image-ref: '.'
           format: sarif
 
+      - name: Unset trivy format env
+        run: unset TRIVY_FORMAT
+
       - name: Run Trivy vulnerability scanner in fs mode
         uses: aquasecurity/trivy-action@master
         with:
