@@ -20,9 +20,6 @@ jobs:
           image-ref: '.'
           format: sarif
 
-      - name: Test
-        run: echo "$TRIVY_FORMAT"
-
       - name: Run Trivy vulnerability scanner in fs mode
         uses: DmitriyLewen/trivy-action@a926ff0616b6002c78ffebdcd2ffc62b7c982165
         with:
