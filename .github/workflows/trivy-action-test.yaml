@@ -22,7 +22,7 @@ jobs:
 
       - name: Unset trivy format env
         run: |
-          echo "TRIVY_FORMAT=" >> $GITHUB_ENV
+          echo "TRIVY_FORMAT=test" >> $GITHUB_ENV
           echo "$TRIVY_FORMAT"
 
       - name: Run Trivy vulnerability scanner in fs mode
