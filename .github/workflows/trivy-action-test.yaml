@@ -14,19 +14,14 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run Trivy vulnerability scanner in fs mode
-        uses: aquasecurity/trivy-action@master
+        uses: DmitriyLewen/trivy-action@c40c353723e961cf2cbbe77d35ecadf75630a21d
         with:
           scan-type: 'fs'
           image-ref: '.'
           format: sarif
 
-      - name: Unset trivy format env
-        run: |
-          echo "TRIVY_FORMAT=test" >> $GITHUB_ENV
-          echo "$TRIVY_FORMAT"
-
       - name: Run Trivy vulnerability scanner in fs mode
-        uses: aquasecurity/trivy-action@master
+        uses: DmitriyLewen/trivy-action@c40c353723e961cf2cbbe77d35ecadf75630a21d
         with:
           scan-type: 'fs'
           image-ref: '.'
