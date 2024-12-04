@@ -28,5 +28,5 @@ jobs:
         with:
           scan-type: 'fs'
           image-ref: '.'
-          format: json
+          format: table
 
