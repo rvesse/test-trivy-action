@@ -21,7 +21,7 @@ jobs:
           format: sarif
 
       - name: Unset trivy format env
-        run: unset TRIVY_FORMAT
+        run: echo "TRIVY_FORMAT=" >> $GITHUB_ENV
 
       - name: Run Trivy vulnerability scanner in fs mode
         uses: aquasecurity/trivy-action@master
