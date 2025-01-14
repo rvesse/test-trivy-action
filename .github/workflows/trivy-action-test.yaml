@@ -18,6 +18,13 @@ jobs:
         with:
           scan-type: 'fs'
           image-ref: '.'
+          format: sarif
+
+      - name: Run Trivy vulnerability scanner in fs mode
+        uses: david-marconis/trivy-action@248e3f1ae9550400733c4410e0fdc2e264a19b5b
+        with:
+          scan-type: 'fs'
+          image-ref: '.'
           format: table
 
       - name: Run Trivy vulnerability scanner in fs mode
