@@ -1,4 +1,4 @@
-name: trivy-action
+name: Env Leakage Tests (437)
 on:
   push:
     branches:
@@ -7,7 +7,25 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  master:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run Trivy vulnerability scanner in fs mode
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          image-ref: '.'
+
+      - name: Run Trivy vulnerability scanner in fs mode
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          image-ref: '.'
+          format: sarif
+  david-macronis:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout code
@@ -21,6 +39,25 @@ jobs:
 
       - name: Run Trivy vulnerability scanner in fs mode
         uses: david-marconis/trivy-action@248e3f1ae9550400733c4410e0fdc2e264a19b5b
+        with:
+          scan-type: 'fs'
+          image-ref: '.'
+          format: sarif
+
+  rvesse:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run Trivy vulnerability scanner in fs mode
+        uses: rvesse/trivy-action@fix/overwrite-envs
+        with:
+          scan-type: 'fs'
+          image-ref: '.'
+
+      - name: Run Trivy vulnerability scanner in fs mode
+        uses: rvesse/trivy-action@fix/overwrite-envs
         with:
           scan-type: 'fs'
           image-ref: '.'
