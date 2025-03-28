@@ -70,13 +70,13 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Default Output
-        uses: rvesse/trivy-action@a4fc06b955eec0de979ebfa4948de52ee7cdf994
+        uses: rvesse/trivy-action@01b0d7309efaea1d836d82905cc7f7a54bd20b36
         with:
           scan-type: 'fs'
           image-ref: '.'
 
       - name: SARIF JSON Output
-        uses: rvesse/trivy-action@a4fc06b955eec0de979ebfa4948de52ee7cdf994
+        uses: rvesse/trivy-action@01b0d7309efaea1d836d82905cc7f7a54bd20b36
         with:
           scan-type: 'fs'
           image-ref: '.'
@@ -84,7 +84,7 @@ jobs:
           skip-setup-trivy: true
 
       - name: Table Output
-        uses: rvesse/trivy-action@a4fc06b955eec0de979ebfa4948de52ee7cdf994
+        uses: rvesse/trivy-action@01b0d7309efaea1d836d82905cc7f7a54bd20b36
         with:
           scan-type: 'fs'
           image-ref: '.'
