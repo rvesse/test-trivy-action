@@ -25,6 +25,7 @@ jobs:
           scan-type: 'fs'
           image-ref: '.'
           format: sarif
+          skip-setup-trivy: true
 
       - name: Table Output
         uses: aquasecurity/trivy-action@master
@@ -32,6 +33,7 @@ jobs:
           scan-type: 'fs'
           image-ref: '.'
           format: table
+          skip-setup-trivy: true
 
   david-macronis:
     runs-on: ubuntu-22.04
@@ -51,6 +53,7 @@ jobs:
           scan-type: 'fs'
           image-ref: '.'
           format: sarif
+          skip-setup-trivy: true
 
       - name: Table Output
         uses: david-marconis/trivy-action@248e3f1ae9550400733c4410e0fdc2e264a19b5b
@@ -58,6 +61,7 @@ jobs:
           scan-type: 'fs'
           image-ref: '.'
           format: table
+          skip-setup-trivy: true
 
   rvesse:
     runs-on: ubuntu-22.04
@@ -66,22 +70,24 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Default Output
-        uses: rvesse/trivy-action@fix/overwrite-envs
+        uses: rvesse/trivy-action@a4fc06b955eec0de979ebfa4948de52ee7cdf994
         with:
           scan-type: 'fs'
           image-ref: '.'
 
       - name: SARIF JSON Output
-        uses: rvesse/trivy-action@fix/overwrite-envs
+        uses: rvesse/trivy-action@a4fc06b955eec0de979ebfa4948de52ee7cdf994
         with:
           scan-type: 'fs'
           image-ref: '.'
           format: sarif
+          skip-setup-trivy: true
 
       - name: Table Output
-        uses: rvesse/trivy-action@fix/overwrite-envs
+        uses: rvesse/trivy-action@a4fc06b955eec0de979ebfa4948de52ee7cdf994
         with:
           scan-type: 'fs'
           image-ref: '.'
           format: table
+          skip-setup-trivy: true
 
