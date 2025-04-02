@@ -92,13 +92,13 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Default Output
-        uses: rvesse/trivy-action@eec9a911d2b531d5df728b030bdb6f34d3fbfa27
+        uses: rvesse/trivy-action@93f8287ea86f66adaa0f580ed25b5be4d2a2f562
         with:
           scan-type: 'fs'
           image-ref: '.'
 
       - name: SARIF JSON Output
-        uses: rvesse/trivy-action@eec9a911d2b531d5df728b030bdb6f34d3fbfa27
+        uses: rvesse/trivy-action@93f8287ea86f66adaa0f580ed25b5be4d2a2f562
         with:
           scan-type: 'fs'
           image-ref: '.'
@@ -106,7 +106,7 @@ jobs:
           skip-setup-trivy: true
 
       - name: Table Output
-        uses: rvesse/trivy-action@eec9a911d2b531d5df728b030bdb6f34d3fbfa27
+        uses: rvesse/trivy-action@93f8287ea86f66adaa0f580ed25b5be4d2a2f562
         with:
           scan-type: 'fs'
           image-ref: '.'
@@ -116,7 +116,7 @@ jobs:
       # Tests what happens if an external environment variable is used that could conflict
       # with an input/default
       - name: CycloneDX Output
-        uses: rvesse/trivy-action@eec9a911d2b531d5df728b030bdb6f34d3fbfa27
+        uses: rvesse/trivy-action@93f8287ea86f66adaa0f580ed25b5be4d2a2f562
         with:
           scan-type: 'fs'
           scan-ref: '.'
