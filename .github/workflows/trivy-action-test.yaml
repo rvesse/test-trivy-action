@@ -35,6 +35,17 @@ jobs:
           format: table
           skip-setup-trivy: true
 
+      # Tests what happens if an external environment variable is used that could conflict
+      # with an input/default
+      - name: CycloneDX Output
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          skip-setup-trivy: true
+        env:
+          TRIVY_FORMAT: cyclonedx
+
   david-macronis:
     runs-on: ubuntu-22.04
     steps:
@@ -63,6 +74,17 @@ jobs:
           format: table
           skip-setup-trivy: true
 
+      # Tests what happens if an external environment variable is used that could conflict
+      # with an input/default
+      - name: CycloneDX Output
+        uses: david-marconis/trivy-action@248e3f1ae9550400733c4410e0fdc2e264a19b5b
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          skip-setup-trivy: true
+        env:
+          TRIVY_FORMAT: cyclonedx
+
   rvesse:
     runs-on: ubuntu-22.04
     steps:
@@ -70,13 +92,13 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Default Output
-        uses: rvesse/trivy-action@732bcb33b2ec209c5d6851b82cea087fc1b915c7
+        uses: rvesse/trivy-action@145a38b698eadf0a9a76434bdf1ebd81a9045377
         with:
           scan-type: 'fs'
           image-ref: '.'
 
       - name: SARIF JSON Output
-        uses: rvesse/trivy-action@732bcb33b2ec209c5d6851b82cea087fc1b915c7
+        uses: rvesse/trivy-action@145a38b698eadf0a9a76434bdf1ebd81a9045377
         with:
           scan-type: 'fs'
           image-ref: '.'
@@ -84,10 +106,21 @@ jobs:
           skip-setup-trivy: true
 
       - name: Table Output
-        uses: rvesse/trivy-action@732bcb33b2ec209c5d6851b82cea087fc1b915c7
+        uses: rvesse/trivy-action@145a38b698eadf0a9a76434bdf1ebd81a9045377
         with:
           scan-type: 'fs'
           image-ref: '.'
           format: table
           skip-setup-trivy: true
+
+      # Tests what happens if an external environment variable is used that could conflict
+      # with an input/default
+      - name: CycloneDX Output
+        uses: rvesse/trivy-action@145a38b698eadf0a9a76434bdf1ebd81a9045377
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          skip-setup-trivy: true
+        env:
+          TRIVY_FORMAT: cyclonedx
 
